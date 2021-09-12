@@ -923,7 +923,7 @@ selectors:
       Teams in Left Menu: >-
         //df-sidebar-item[div[a[contains(text(),'Administration')]]]//a[contains(text(),'Teams')]
       Manage Library in Left Menu: '//a[contains(text(),''Manage Library'')]'
-      Configure in Data Management Settings section: '//button[contains(text(),"Configure")]'
+      Configure in Data Management Settings section: '//button[contains(text(),'Configure')]'
       the 'Import' button in 'Data Management Settings' section: '//button[contains(text(),"Import")]'
       Data Management Settings: null
       Upload: '//span[contains(text(),"Upload")]'
