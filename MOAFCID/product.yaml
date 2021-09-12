@@ -1,0 +1,55 @@
+Product: M1.AlertFind
+BU: AMS
+Company: Aurea Enterprise
+JiraServer: DFC
+SE7:
+- Key: MOAFCID
+  Name: M1.AlertFind
+  Lifecycle: SE7
+  LifecycleStage: In Model
+  DeploymentModel: SaaS
+  HardwareDependencies: No
+  Team:
+    ProductCA:
+      Name: Shani Natav
+      Email: shani.natav@devfactory.com
+      Username: shaninatav
+    SecondaryCA:
+    TertiaryCA:
+Team:
+  ProductVP:
+    Name: Ashish Reddy
+    Email: ashishreddy.konda@gdev.biz
+    Username: arkonda
+  ProductSEM:
+    Name: Stelian Moldovan
+    Email: Stelian.Moldovan@gfi.com
+    Username: smoldovan
+  PM:
+    Name: Shai Sagi
+    Email: shai.sagi@aurea.com
+    Username: ssagi
+  SupportVP:
+    Name: Ware Hartwell
+    Email: ware.hartwell@aurea.com
+    Username: whartwell
+  MaintenanceVP:
+  MaintenanceSEM:
+    Name: Filip Smets
+    Email: filip.smets@trilogy.com
+    Username: filipsmets
+  FeatureVP:
+  FeatureSEM:
+    Name: Ertugrul Tabak
+    Email: ertugrul.tabak@aurea.com
+    Username: etabak
+  FasterVP:
+    Name: Ashish Reddy
+    Email: ashishreddy.konda@gdev.biz
+    Username: arkonda
+  FasterSEM:
+    Name: Tomasz Boboli
+    Email: tomasz.boboli@aurea.com
+    Username: tboboli
+  RestAPIVP:
+  RestAPISEM:

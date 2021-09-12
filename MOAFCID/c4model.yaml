@@ -1,0 +1,5292 @@
+model:
+  enterprise:
+    name: Aurea
+  people:
+  - location: Internal
+    name: Support User
+    description: Support User - Internal users for system management.
+    relationships:
+    - description: Reads roster files from FTP server
+      sourceId: 3
+      destinationId: 356
+      id: 358
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Uses AlertFind UI for Configuration/Reports and upload roster file
+      sourceId: 3
+      destinationId: 4
+      id: 85
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Uses AlertFind UI for Configuration/Reports/Roster upload
+      sourceId: 3
+      destinationId: 21
+      id: 84
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    id: 3
+    tags: Element,Person,Support User
+    properties: {}
+    perspectives: []
+  - location: External
+    name: Customer Admin User
+    description: Customer Admin or Leader User
+    relationships:
+    - description: Uses AlertFind for configuration, reports and send notifications
+      sourceId: 1
+      destinationId: 4
+      id: 99
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Uses AlertFind UI for configuration and send notifications
+      sourceId: 1
+      destinationId: 21
+      id: 106
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Send Notification
+      sourceId: 1
+      destinationId: 11
+      id: 301
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Upload roster file
+      sourceId: 1
+      destinationId: 356
+      technology: sftp
+      id: 357
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    id: 1
+    tags: Element,Person,Customer Admin User
+    properties: {}
+    perspectives: []
+  - location: External
+    name: Customer End User
+    description: Customer User who receives and confirm notifications
+    relationships: []
+    id: 2
+    tags: Element,Person,Customer User
+    properties: {}
+    perspectives: []
+  softwareSystems:
+  - location: External
+    containers: []
+    name: Sinch / Modica SMS Gateway
+    description: Sinch Modica SMS Gateway
+    relationships:
+    - description: Send SMS and receive reply
+      sourceId: 9
+      destinationId: 2
+      id: 72
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    id: 9
+    tags: Element,Software System,Sinch Modica SMS Gateway
+    properties: {}
+    perspectives: []
+  - location: External
+    containers: []
+    name: Customer System
+    description: Customer System/Application calls AlertFind SOAP API
+    relationships:
+    - description: Calls AlertFind SOAP APIs to send notification, user management.
+      sourceId: 5
+      destinationId: 4
+      technology: https/SOAP
+      id: 95
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Calls AlertFind SOAP APIs to send notification, user management.
+      sourceId: 5
+      destinationId: 11
+      technology: https/SOAP
+      id: 94
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Calls AlertFind SOAP APIs to send notification, user management.
+      sourceId: 5
+      destinationId: 30
+      technology: https/SOAP
+      id: 93
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    id: 5
+    tags: Element,Software System,jive system
+    properties: {}
+    perspectives: []
+  - location: External
+    containers: []
+    name: Voxeo System
+    description: Voxeo - Service Provider for Voice call and pager
+    relationships:
+    - description: Send voice and pager notifications
+      sourceId: 10
+      destinationId: 2
+      id: 97
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    id: 10
+    tags: Element,Software System,Voxeo System
+    properties: {}
+    perspectives: []
+  - location: External
+    containers: []
+    name: EMS System
+    description: EMS System for Email Archiving
+    relationships: []
+    id: 7
+    tags: Element,Software System,EMS System
+    properties: {}
+    perspectives: []
+  - location: External
+    containers: []
+    name: Jive/Tray.io
+    description: Tray.IO or Jive System - Upload roster file and send notifications
+    relationships:
+    - description: Send notification / roster file via SOAP API
+      sourceId: 8
+      destinationId: 30
+      technology: https/SOAP
+      id: 79
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Send notification / roster file via SOAP API
+      sourceId: 8
+      destinationId: 11
+      technology: https/SOAP
+      id: 80
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Send notification / roster file via SOAP API
+      sourceId: 8
+      destinationId: 4
+      technology: https/SOAP
+      id: 81
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    id: 8
+    tags: Element,Software System,tray.io
+    properties: {}
+    perspectives: []
+  - location: External
+    containers: []
+    name: Data On Call - Fax
+    description: Fax Service Provider
+    relationships:
+    - description: Send Fax
+      sourceId: 6
+      destinationId: 2
+      id: 96
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    id: 6
+    tags: Element,Software System,Fax
+    properties: {}
+    perspectives: []
+  - location: Internal
+    containers:
+    - technology: postgres
+      components: []
+      name: MSDC Database
+      description: MSDC Database
+      relationships: []
+      id: 19
+      tags: 'Element,Container,MSDC Database,FA:MOAFCID-39891,SE7:MOAFCID-43578,SE7:MOAFCID,FA:'
+      properties: {}
+      perspectives: []
+    - technology: postgis/smpp
+      components:
+      - technology: OpenDKIM
+        size: 0
+        code: []
+        name: OpenDKIM
+        description: DKIM to sign Email
+        url: https://sourceforge.net/projects/opendkim/files/
+        relationships: []
+        id: 34
+        tags: Element,Component,OpenDKIM,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Postfix
+        size: 0
+        code: []
+        name: Postfix
+        description: Mail server to send email
+        url: http://www.postfix.org/
+        relationships:
+        - description: Confirm Email Response
+          sourceId: 35
+          destinationId: 11
+          technology: https
+          id: 300
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Sign Email
+          sourceId: 35
+          destinationId: 34
+          id: 298
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send Email and confirm response
+          sourceId: 35
+          destinationId: 2
+          id: 299
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 35
+        tags: Element,Component,Postfix,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      name: MTA
+      description: Mail Transfer Agent to send emails
+      relationships:
+      - description: Send Email notification
+        sourceId: 22
+        destinationId: 2
+        technology: SMTP
+        id: 102
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      id: 22
+      tags: Element,Container,MTA,FA:MOAFCID-38636,SE7:MOAFCID-43578,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: Java
+      components:
+      - technology: https/REST
+        size: 0
+        code: []
+        name: MSDC API for Mobile app
+        description: MSDC API for Mobile app
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/msdc/api
+        relationships:
+        - description: Add request to queue
+          sourceId: 32
+          destinationId: 33
+          id: 280
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Save registration in MSDC
+          sourceId: 32
+          destinationId: 19
+          id: 283
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 32
+        tags: Element,Component,MSDC API for Mobile app,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: https/json
+        size: 0
+        code: []
+        name: MSDC API for AlertFind
+        description: MSDC API for AlertFind
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/services/msdc
+        relationships:
+        - description: Save data in MSDC database
+          sourceId: 31
+          destinationId: 19
+          id: 277
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: add request in queue
+          sourceId: 31
+          destinationId: 33
+          id: 276
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 31
+        tags: Element,Component,MSDC API for AlertFind,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Queue Service
+        description: Queue to process transaction/request in async manner
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/imp/pipe
+        relationships:
+        - description: Send Login, Registration, location checkin, notification confirmation to AlertFind
+          sourceId: 33
+          destinationId: 11
+          technology: https/JSON
+          id: 281
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Read / Write Transaction details
+          sourceId: 33
+          destinationId: 15
+          id: 278
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send Push notification to
+          sourceId: 33
+          destinationId: 14
+          technology: firebase
+          id: 74
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send push notification to
+          sourceId: 33
+          destinationId: 13
+          technology: APNS
+          id: 73
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 33
+        tags: Element,Component,Queue Service,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      name: MSDC
+      description: Mobile Service Data Centre
+      relationships:
+      - description: Read / Write Transaction details
+        sourceId: 17
+        destinationId: 15
+        id: 279
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Call Login/Registration
+        sourceId: 17
+        destinationId: 117
+        id: 126
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Read / Write Records
+        sourceId: 17
+        destinationId: 19
+        technology: JDBC
+        id: 105
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send Notification and Receive Login, Registration, Location, notification confirmation
+        sourceId: 17
+        destinationId: 13
+        id: 60
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send Notification and Receive Login, Registration, Location, notification confirmation
+        sourceId: 17
+        destinationId: 14
+        id: 58
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      id: 17
+      tags: Element,Container,MSDC,FA:MOAFCID-37507,SE7:MOAFCID-43578,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: Java/android
+      components: []
+      name: Android Mobile app
+      description: AlertFind Android Mobile app
+      relationships:
+      - description: Alert Notification and Receive Registration, Location, notification confirmation
+        sourceId: 14
+        destinationId: 2
+        id: 108
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Call MSDC API for login, registration, location, notification confirmation
+        sourceId: 14
+        destinationId: 32
+        technology: https/json
+        id: 284
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      id: 14
+      tags: Element,Container,Android Mobile app,SE7:MOAFCID-43578,FA:MOAFCID-38338,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: postgres
+      components: []
+      name: AlertFind Database
+      description: AlertFind Database
+      relationships: []
+      id: 18
+      tags: 'Element,Container,AlertFind Database,FA:MOAFCID-39891,SE7:MOAFCID-32753,SE7:MOAFCID,FA:'
+      properties: {}
+      perspectives: []
+    - technology: Amazon ElasticCache
+      components: []
+      name: Elastic Cache
+      description: Elasctic Cache for Redis transaction
+      relationships: []
+      id: 15
+      tags: Element,Container,Elastic Cache,FA:MOAFCID-42712,SE7:MOAFCID-43578,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: EFS
+      components: []
+      name: File Storage
+      description: Shared File Storage for configurations, logs, roster files
+      relationships: []
+      id: 12
+      tags: Element,Container,File System,FA:MOAFCID-43543,SE7:MOAFCID-43578,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: SFTP
+      components: []
+      name: FTP Server
+      description: FTP server to upload customer roster file
+      relationships:
+      - description: ''
+        sourceId: 356
+        destinationId: 11
+        id: 418
+        tags: Relationship
+        properties: {}
+        perspectives: []
+      id: 356
+      tags: 'Element,Container,FA:MOAFCID-37508,SE7:MOAFCID-43578,SE7:MOAFCID,FA:'
+      properties: {}
+      perspectives: []
+    - technology: postgres
+      components: []
+      name: Provato Database
+      description: Provato Database
+      relationships: []
+      id: 20
+      tags: Element,Container,Provato Database,FA:MOAFCID-38335,SE7:MOAFCID-43578,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: iOS / Objective C
+      components: []
+      name: iOS mobile app
+      description: AlertFind iOS mobile app
+      relationships:
+      - description: Call MSDC API for login, registration, location, notification confirmation
+        sourceId: 13
+        destinationId: 32
+        technology: https/json
+        id: 75
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Alert Notification and Receive Registration, Location, notification confirmation
+        sourceId: 13
+        destinationId: 2
+        id: 107
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      id: 13
+      tags: Element,Container,AlertFind iOS mobile app,FA:MOAFCID-24693,SE7:MOAFCID-43578,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: angular
+      components:
+      - technology: angular/typescript
+        size: 0
+        code: []
+        name: UI - Group Service
+        description: Component/Angular Service for Groups
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/groups/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 316
+          destinationId: 11
+          technology: https/json
+          id: 341
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 316
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: angular/typescript
+        size: 0
+        code: []
+        name: UI - Teams Service
+        description: Component/Angular Service for Teams
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/team/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 324
+          destinationId: 11
+          technology: https/json
+          id: 348
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 324
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: typescript/angular
+        size: 0
+        code: []
+        name: UI - Incidents Service
+        description: Component/Angular Service for Incidents
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/incidents/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 318
+          destinationId: 11
+          technology: https/json
+          id: 343
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 318
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Notifications
+        description: UI View for Notifications
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/shared/modules/compose/pages
+        relationships:
+        - description: Uses
+          sourceId: 312
+          destinationId: 320
+          technology: https/json
+          id: 350
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 312
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Incidents
+        description: UI View for Incidents
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/incidents
+        relationships:
+        - description: Uses
+          sourceId: 305
+          destinationId: 318
+          id: 331
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 305
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: angular/typescript
+        size: 0
+        code: []
+        name: UI - Hotlines Service
+        description: Component/Angular Service for Hotlines
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/hotline/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 317
+          destinationId: 11
+          technology: https/json
+          id: 342
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 317
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Customer
+        description: UI View for Customer
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/dashboard/pages/customer
+        relationships:
+        - description: Uses
+          sourceId: 302
+          destinationId: 314
+          technology: Angular
+          id: 326
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 302
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Groups
+        description: UI View for Groups
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/groups/pages
+        relationships:
+        - description: Uses
+          sourceId: 304
+          destinationId: 316
+          id: 329
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 304
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: angular/Typescript
+        size: 0
+        code: []
+        name: UI - Smart Contact Service
+        description: Component/Angular Service for Smart Contact
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/smart-contact/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 323
+          destinationId: 11
+          technology: https/jspn
+          id: 347
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 323
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: angular/typescript
+        size: 0
+        code: []
+        name: UI - Authentication Service
+        description: Component/Angular Service for Authentication
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/login/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 319
+          destinationId: 11
+          technology: https/json
+          id: 338
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 319
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Smart Contact
+        description: UI View for Smart Contact
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/smart-contact
+        relationships:
+        - description: Uses
+          sourceId: 311
+          destinationId: 323
+          id: 335
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 311
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Reports
+        description: UI View for Reports
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/reporting
+        relationships:
+        - description: Uses
+          sourceId: 309
+          destinationId: 321
+          id: 333
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 309
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Hotlines
+        description: UI View for Hotlines
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/dashboard/pages/hotline-phone-numbers
+        relationships:
+        - description: Uses
+          sourceId: 310
+          destinationId: 317
+          id: 330
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 310
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Angular / Typescript
+        size: 0
+        code: []
+        name: UI - Customer Service
+        description: Component/Angular Service for Customer
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/dashboard/pages/customer/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 314
+          destinationId: 11
+          technology: https/json
+          id: 339
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 314
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Angular / Typescript
+        size: 0
+        code: []
+        name: UI - Customer setup service
+        description: Component/Angular Service for Customer setup
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/shared/customer/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 315
+          destinationId: 11
+          technology: https/json
+          id: 340
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 315
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Login
+        description: Login view
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/login/pages/login
+        relationships:
+        - description: Uses
+          sourceId: 313
+          destinationId: 319
+          technology: https/json
+          id: 351
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 313
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Customer Setup
+        description: UI View for Customer setup / settings
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/dashboard/pages/customer/pages/customer
+        relationships:
+        - description: Uses
+          sourceId: 303
+          destinationId: 315
+          id: 328
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 303
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Angular/Typescript
+        size: 0
+        code: []
+        name: UI - Reports Service
+        description: Component/Angular Service for Reports
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/reporting/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 321
+          destinationId: 11
+          technology: https/json
+          id: 345
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 321
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: angular/typescript
+        size: 0
+        code: []
+        name: UI - Notification Service
+        description: Component/Angular Service for Notifications
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/shared/modules/compose/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 320
+          destinationId: 11
+          technology: https/json
+          id: 344
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 320
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Teams
+        description: UI View for Teams
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/team
+        relationships:
+        - description: Uses
+          sourceId: 308
+          destinationId: 324
+          id: 336
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 308
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Angular / Typescript
+        size: 0
+        code: []
+        name: UI - Users Service
+        description: Component/Angular Service for Users
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/user/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 325
+          destinationId: 11
+          technology: https/json
+          id: 349
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 325
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Sites
+        description: UI View for Sites
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/site
+        relationships:
+        - description: Uses
+          sourceId: 306
+          destinationId: 322
+          id: 334
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 306
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: html/css
+        size: 0
+        code: []
+        name: UI - Users
+        description: UI View for Users
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/user
+        relationships:
+        - description: Uses
+          sourceId: 307
+          destinationId: 325
+          id: 337
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 307
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: angular/typescript
+        size: 0
+        code: []
+        name: UI - Sites Service
+        description: Component/Angular Service for Sites
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ui/src/app/modules/user-dashboard/pages/site/services
+        relationships:
+        - description: Calls REST API
+          sourceId: 322
+          destinationId: 11
+          technology: https/json
+          id: 346
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 322
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      name: Alertfind UI
+      description: AlertFind UI for customer/support user
+      relationships:
+      - description: Send Request to
+        sourceId: 21
+        destinationId: 11
+        id: 52
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to manage hotlines
+        sourceId: 21
+        destinationId: 176
+        technology: https/json
+        id: 179
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to manage Groups
+        sourceId: 21
+        destinationId: 113
+        technology: https/REST
+        id: 141
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to manage Customers
+        sourceId: 21
+        destinationId: 200
+        technology: https/json
+        id: 205
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Create User, Devices
+        sourceId: 21
+        destinationId: 112
+        id: 133
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send Request to
+        sourceId: 21
+        destinationId: 29
+        id: 51
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to manage templates
+        sourceId: 21
+        destinationId: 183
+        id: 188
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to manage incidents
+        sourceId: 21
+        destinationId: 167
+        id: 173
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to manage teams
+        sourceId: 21
+        destinationId: 145
+        technology: https/REST
+        id: 148
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to manage Sites
+        sourceId: 21
+        destinationId: 197
+        technology: https/json
+        id: 204
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to Generate Reports
+        sourceId: 21
+        destinationId: 194
+        technology: https/json
+        id: 203
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send request to manage notifications
+        sourceId: 21
+        destinationId: 111
+        technology: Spring/REST/JSON
+        id: 161
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      id: 21
+      tags: Element,Container,Alertfind UI,FA:MOAFCID-39646,MOAFCID-39395,SE7:MOAFCID-43578,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: Java
+      components:
+      - technology: Java
+        size: 0
+        code: []
+        name: Provato Router
+        description: Router SMS response to specific AlertFind Data Centre
+        url: https://github.com/trilogy-group/versata-m1.alertfind-provato/tree/master/src/main/java/ie/ncl/vivato/router
+        relationships:
+        - description: Send AlertFind SMS Confirmation to Specific AlertFind Data Centre
+          sourceId: 38
+          destinationId: 11
+          id: 293
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 38
+        tags: Element,Component,Provato Router,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: SMPP
+        size: 0
+        code: []
+        name: Provato Applications
+        description: Application for receive SMS from different AlertFind Data Centre
+        url: https://github.com/trilogy-group/versata-m1.alertfind-provato/tree/master/src/server/webapp
+        relationships:
+        - description: Add SMS in DB Queue
+          sourceId: 36
+          destinationId: 20
+          technology: JDBC
+          id: 296
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 36
+        tags: Element,Component,Provato Applications,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: SMPP
+        size: 0
+        code: []
+        name: Provato Gateway
+        description: Send SMS using SMS aggregator
+        url: https://github.com/trilogy-group/versata-m1.alertfind-provato/tree/master/src/console/webapp
+        relationships:
+        - description: Send SMS response to provato router
+          sourceId: 37
+          destinationId: 38
+          id: 288
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Read SMS from Database queue
+          sourceId: 37
+          destinationId: 20
+          technology: JBBC
+          id: 297
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send SMS notification and receive confirmation
+          sourceId: 37
+          destinationId: 9
+          technology: SMPP
+          id: 69
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 37
+        tags: Element,Component,Provato Gateway,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      name: Provato
+      description: Provato application as SMS Gateway
+      relationships:
+      - description: Send SMS notification and receive confirmation
+        sourceId: 16
+        destinationId: 9
+        technology: SMPP
+        id: 70
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Read / Write Records
+        sourceId: 16
+        destinationId: 20
+        technology: JDBC
+        id: 103
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      id: 16
+      tags: Element,Container,Provato,FA:MOAFCID-38335,SE7:MOAFCID-43578,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    - technology: Java/python/XML/json
+      components:
+      - technology: Java
+        size: 0
+        code: []
+        name: Authentication Service
+        description: Service component for authentication from AF and EMS
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/security/service
+        relationships:
+        - description: Call Data Access layer to Read/Write Data from database
+          sourceId: 117
+          destinationId: 116
+          technology: Java
+          id: 119
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Validates inputs, read config, logging
+          sourceId: 117
+          destinationId: 115
+          technology: Java
+          id: 120
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 117
+        tags: Element,Component,Services,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/REST/json
+        size: 0
+        code: []
+        name: Hotline Controller
+        description: Handles hotline numbers
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/mgmt/hotline
+        relationships:
+        - description: Calls Service for Validation/Load/Save Hotline
+          sourceId: 176
+          destinationId: 177
+          id: 180
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 176
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: REST/Spring/Json
+        size: 0
+        code: []
+        name: Incident Controller
+        description: Incident Controller
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/controllers/incidents
+        relationships:
+        - description: Calls Service for Validation/Load/Save Templates
+          sourceId: 167
+          destinationId: 1
+          id: 189
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Calls Service for Validation/Load/Save Incidents
+          sourceId: 167
+          destinationId: 168
+          technology: Java
+          id: 170
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 167
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/jsp
+        size: 0
+        code: []
+        name: IVR Service
+        description: Callback Endpoints for Voxeo
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/services/voxeo
+        relationships: []
+        id: 28
+        tags: Element,Component,IVR Service,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/Spring
+        size: 0
+        code: []
+        name: Notification Controllers
+        description: Notifications composition Handler
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/NotificationController.java
+        relationships:
+        - description: Calls Service for Validation/Load/Save Notifications
+          sourceId: 111
+          destinationId: 159
+          technology: java
+          id: 162
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 111
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java
+        size: 0
+        code: []
+        name: Incident Service
+        description: Handles Incidents API Calls
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/ui/IncidentService.java
+        relationships:
+        - description: Incident manager to Load/Save Incidents
+          sourceId: 168
+          destinationId: 160
+          technology: Java
+          id: 171
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Used for config/validation
+          sourceId: 168
+          destinationId: 115
+          id: 174
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 168
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/java
+        size: 0
+        code: []
+        name: Report Service
+        description: Handles report generation API Calls
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/report/ReportService.java
+        relationships:
+        - description: Uses manager to Load/Save Reports
+          sourceId: 195
+          destinationId: 196
+          id: 212
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 195
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java
+        size: 0
+        code: []
+        name: AlertFind Scheduler
+        description: Scheduler service to send notifications and generate reports.
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/utils/java/com/m1/util/scheduler
+        relationships:
+        - description: Send Mobile app Notification to
+          sourceId: 25
+          destinationId: 31
+          technology: https/json
+          id: 82
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Read / Write records
+          sourceId: 25
+          destinationId: 18
+          technology: JDBC
+          id: 86
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send Email Notification
+          sourceId: 25
+          destinationId: 22
+          technology: SMPP
+          id: 77
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Read config and generate reports
+          sourceId: 25
+          destinationId: 12
+          id: 90
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send FAX notification
+          sourceId: 25
+          destinationId: 6
+          technology: http
+          id: 63
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send Mobile app Notification to
+          sourceId: 25
+          destinationId: 17
+          id: 54
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send Voice notifications
+          sourceId: 25
+          destinationId: 1
+          technology: https/xml
+          id: 41
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 25
+        tags: Element,Component,AlertFind Scheduler,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Team Services
+        description: Services to manage Teams
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/services/teams
+        relationships:
+        - description: Used for config/validation
+          sourceId: 146
+          destinationId: 115
+          technology: Java
+          id: 158
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Uses Team manager
+          sourceId: 146
+          destinationId: 147
+          technology: java
+          id: 157
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 146
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/sql
+        size: 0
+        code: []
+        name: Site Manager
+        description: Handles sites DB calls
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/mgmt/backend
+        relationships:
+        - description: Load/Save sites in database
+          sourceId: 199
+          destinationId: 18
+          id: 214
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 199
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Recipient Resolution
+        description: Resolves recipients for notifications
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/ui/RecipientService.java
+        relationships:
+        - description: Uses
+          sourceId: 218
+          destinationId: 137
+          id: 232
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Uses
+          sourceId: 218
+          destinationId: 128
+          id: 233
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 218
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/REST/JSON
+        size: 0
+        code: []
+        name: Site Controller
+        description: Sites handler
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/easier/server/src/main/java/com/m1/af/api/controllers/SiteController.java
+        relationships:
+        - description: Validate/Load/Save Sites
+          sourceId: 197
+          destinationId: 198
+          technology: java
+          id: 208
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 197
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java/sql
+        size: 0
+        code: []
+        name: Incident Manager
+        description: Incident DB Read/Write
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/IncidentManager.java
+        relationships:
+        - description: Load/Save Incidents in database
+          sourceId: 169
+          destinationId: 18
+          technology: java/sql
+          id: 172
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 169
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Pager Notification
+        description: Handles Pager task
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/ivr/src/main/webapp/vxml/pager
+        relationships:
+        - description: Send page to
+          sourceId: 224
+          destinationId: 10
+          id: 262
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 224
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: JDBC
+        size: 0
+        code: []
+        name: User Manager
+        description: Database layer User Services to read/update records
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/UserManager.java
+        relationships:
+        - description: Read/Write User/Device/Profile/Team in DB
+          sourceId: 128
+          destinationId: 18
+          technology: JDBC
+          id: 129
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 128
+        tags: Element,Component,User Manager,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Voice Notification
+        description: Handles voice notification task
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/voice
+        relationships:
+        - description: Send Voice Notification
+          sourceId: 223
+          destinationId: 10
+          id: 261
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 223
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Team Update Task
+        description: Team update users list task
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/commandline/PeriodicTeamUpdate.java
+        relationships:
+        - description: Uses
+          sourceId: 228
+          destinationId: 147
+          id: 237
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 228
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Email Notification
+        description: Handles Email Tasks
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/tasks/EmailNotificationResultsTask.java
+        relationships:
+        - description: Send Email
+          sourceId: 221
+          destinationId: 22
+          id: 250
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 221
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/XML/https
+        size: 0
+        code: []
+        name: EMSImportController
+        description: Pull Roster File from EMS
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/ui/forms/EMSImportForm.java
+        relationships:
+        - description: Fetch roster file
+          sourceId: 269
+          destinationId: 7
+          id: 270
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Download roster file
+          sourceId: 269
+          destinationId: 12
+          id: 274
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 269
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: User Services
+        description: Services for User, Device, Profile, Team management
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/services/users
+        relationships:
+        - description: Validate
+          sourceId: 127
+          destinationId: 115
+          technology: Java
+          id: 130
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Manager to load/save User, Device, Profile, Team
+          sourceId: 127
+          destinationId: 128
+          technology: Java/sql
+          id: 135
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 127
+        tags: Element,Component,User Services,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java/spring
+        size: 0
+        code: []
+        name: Hotline Service
+        description: Handles hotline number API Calls
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/easier/server/src/main/java/com/m1/af/api/services/HotlineService.java
+        relationships:
+        - description: Uses manager to Load/Save hotline
+          sourceId: 177
+          destinationId: 178
+          id: 181
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 177
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/REST/JAVA/JSON
+        size: 0
+        code: []
+        name: Team Controllers
+        description: Controllers to manage Teams
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/controllers/teams
+        relationships:
+        - description: Calls Service for Validation/Load/Save Teams
+          sourceId: 145
+          destinationId: 146
+          technology: Java
+          id: 149
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 145
+        tags: Element,Component,Team Controllers,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Team Resolution
+        description: Handles team unpacking to user list
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/ui/forms/TeamForm.java
+        relationships:
+        - description: uses
+          sourceId: 220
+          destinationId: 147
+          id: 235
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: uses
+          sourceId: 220
+          destinationId: 128
+          id: 236
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: uses
+          sourceId: 220
+          destinationId: 137
+          id: 234
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 220
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Mobile App notification
+        description: Mobile Application notifications handling API
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/msdc/api/mobile
+        relationships:
+        - description: Send Mobile app notification
+          sourceId: 225
+          destinationId: 17
+          id: 259
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 225
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: SMS Notification
+        description: Handles SMS Tasks
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/mgmt/sms
+        relationships:
+        - description: Send SMS
+          sourceId: 254
+          destinationId: 16
+          id: 256
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 254
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Notification Service
+        description: Notification Service to schedule notification / reports
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/ui/NotificationService.java
+        relationships:
+        - description: Uses manager to Load/Save Notifications
+          sourceId: 159
+          destinationId: 160
+          id: 163
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Used for config/validation
+          sourceId: 159
+          destinationId: 115
+          technology: java
+          id: 165
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 159
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Smart Contact Notification
+        description: Smart contact handling
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/mgmt/smartcontact
+        relationships:
+        - description: Reads  config and users without Cell Phone from DB
+          sourceId: 227
+          destinationId: 18
+          technology: JDBC
+          id: 263
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send
+          sourceId: 227
+          destinationId: 22
+          id: 253
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 227
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring
+        size: 0
+        code: []
+        name: Group Services
+        description: Services for Escalation, Broadcast and Smart Groups
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/services/groups
+        relationships:
+        - description: Used for config/validation
+          sourceId: 136
+          destinationId: 115
+          technology: Java
+          id: 143
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Uses manager to Load/Save Groups
+          sourceId: 136
+          destinationId: 137
+          technology: java
+          id: 139
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 136
+        tags: Element,Component,Group Services,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Device Resolution
+        description: Handles device mapping to classes
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/tasks/DeviceResolutionTask.java
+        relationships:
+        - description: uses
+          sourceId: 219
+          destinationId: 160
+          id: 231
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: uses
+          sourceId: 219
+          destinationId: 202
+          id: 230
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 219
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java/sql
+        size: 0
+        code: []
+        name: Group Managers
+        description: Data access to load/save groups
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/GroupManager.java
+        relationships:
+        - description: Load/Save Groups in database
+          sourceId: 137
+          destinationId: 18
+          technology: jdbc
+          id: 140
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 137
+        tags: Element,Component,Group Managers,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/REST/JSON
+        size: 0
+        code: []
+        name: Reports Controller
+        description: Handles reports generation
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/controllers/reports
+        relationships:
+        - description: Validate/Generate/Save/Download Reports
+          sourceId: 194
+          destinationId: 195
+          id: 207
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 194
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: JDBC
+        size: 0
+        code: []
+        name: Authentication Manager
+        description: Read user details, Multi Factor auth details form DB
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/soap-api/src/main/java/com/m1/cmc/ws/authentication
+        relationships:
+        - description: Read Write Data from Database
+          sourceId: 116
+          destinationId: 18
+          technology: JDBC
+          id: 118
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 116
+        tags: Element,Component,Data Access,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/Java
+        size: 0
+        code: []
+        name: Site Service
+        description: Handles sites API Calls
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/ui/SiteService.java
+        relationships:
+        - description: Uses manager to Load/Save Sites
+          sourceId: 198
+          destinationId: 199
+          id: 217
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 198
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/jdbc
+        size: 0
+        code: []
+        name: Notification Task
+        description: Root Notification task to load user, customer, team, notification from database.
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/mgmt/tasks
+        relationships:
+        - description: Send
+          sourceId: 240
+          destinationId: 221
+          id: 245
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send
+          sourceId: 240
+          destinationId: 225
+          id: 249
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Uses
+          sourceId: 240
+          destinationId: 160
+          id: 244
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send
+          sourceId: 240
+          destinationId: 223
+          id: 247
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send
+          sourceId: 240
+          destinationId: 224
+          id: 248
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send
+          sourceId: 240
+          destinationId: 254
+          id: 255
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Send
+          sourceId: 240
+          destinationId: 222
+          id: 246
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Uses
+          sourceId: 240
+          destinationId: 128
+          id: 242
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Uses
+          sourceId: 240
+          destinationId: 147
+          id: 243
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Uses
+          sourceId: 240
+          destinationId: 202
+          id: 241
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 240
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/XML
+        size: 0
+        code: []
+        name: AlertFind Importer
+        description: Importer service to Import Roster file
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/importer
+        relationships:
+        - description: Manage Groups from Roster file
+          sourceId: 26
+          destinationId: 137
+          id: 265
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Read config and Roster file
+          sourceId: 26
+          destinationId: 12
+          id: 91
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Manage Teams from Roster file
+          sourceId: 26
+          destinationId: 147
+          id: 266
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Manage Users from Roster file
+          sourceId: 26
+          destinationId: 128
+          id: 267
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 26
+        tags: Element,Component,AlertFind Importer,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java/sql
+        size: 0
+        code: []
+        name: Notification Manager
+        description: Notification manager to save/read DB queue
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/NotificationManager.java
+        relationships:
+        - description: Load/Save Groups in Notifications
+          sourceId: 160
+          destinationId: 18
+          technology: java/psql
+          id: 164
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 160
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/SOAP
+        size: 0
+        code: []
+        name: AlertFind SOAP API
+        description: SOAP API for customer for user, notification, roster
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/soap-api
+        relationships:
+        - description: Upload roster files to File Storage
+          sourceId: 30
+          destinationId: 12
+          technology: SOAP
+          id: 268
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Process Incident request
+          sourceId: 30
+          destinationId: 168
+          id: 175
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Process Notification request
+          sourceId: 30
+          destinationId: 159
+          id: 166
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Call Authentication User API
+          sourceId: 30
+          destinationId: 117
+          technology: SOAP
+          id: 125
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Process Groups request
+          sourceId: 30
+          destinationId: 136
+          technology: SOAP
+          id: 142
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Process Teams request
+          sourceId: 30
+          destinationId: 146
+          technology: SOAP
+          id: 156
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Process User/Device/Profile request
+          sourceId: 30
+          destinationId: 127
+          technology: SOAP
+          id: 131
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 30
+        tags: Element,Component,AlertFind SOAP API,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Fax Notification
+        description: Handles fax tasks
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/tasks/FaxNotificationTask.java
+        relationships:
+        - description: Send
+          sourceId: 222
+          destinationId: 6
+          id: 251
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 222
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: python
+        size: 0
+        code: []
+        name: ADMT
+        description: AlertFind data management tool to convert CSV into XML
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/python/admt
+        relationships:
+        - description: Convert CSV to XML
+          sourceId: 27
+          destinationId: 26
+          technology: python3
+          id: 264
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Read CSV roster
+          sourceId: 27
+          destinationId: 12
+          id: 39
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 27
+        tags: Element,Component,ADMT,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java/psql
+        size: 0
+        code: []
+        name: Team Manager
+        description: Manager to load/save Team in Database
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/TeamManager.java
+        relationships:
+        - description: Load/Save Teams in database
+          sourceId: 147
+          destinationId: 18
+          id: 153
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 147
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/sql
+        size: 0
+        code: []
+        name: Template Manager
+        description: Notification template Read/Write to DB
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/NotificationTemplateManager.java
+        relationships:
+        - description: Load/Save Groups in templates
+          sourceId: 185
+          destinationId: 18
+          technology: java/sql
+          id: 193
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 185
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/Spring
+        size: 0
+        code: []
+        name: Template Service
+        description: Handles template API Calls
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/services/templates
+        relationships:
+        - description: Uses manager to Load/Save templates
+          sourceId: 184
+          destinationId: 185
+          id: 192
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 184
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Report Generation
+        description: Reports main generator
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/report
+        relationships:
+        - description: Uses
+          sourceId: 226
+          destinationId: 196
+          id: 252
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Generate report on
+          sourceId: 226
+          destinationId: 12
+          id: 260
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 226
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Utils
+        description: Utility functions for validation/config/logging
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/utils/java/pom.xml
+        relationships: []
+        id: 115
+        tags: Element,Component,utils,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/sql
+        size: 0
+        code: []
+        name: Report Manager
+        description: Manages reports data from DB
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/SavedReportManager.java
+        relationships:
+        - description: Load/Save Reports in database
+          sourceId: 196
+          destinationId: 18
+          technology: jdbc
+          id: 216
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 196
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java/sql
+        size: 0
+        code: []
+        name: Hotline Manager
+        description: Manages hotlines data from DB
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/HotlineManager.java
+        relationships:
+        - description: Load/Save hotlines in database
+          sourceId: 178
+          destinationId: 18
+          id: 182
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 178
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/REST/JSON
+        size: 0
+        code: []
+        name: Group Controllers
+        description: Controllers to manage Escalation, Broadcast and Smart Groups
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/controllers/groups
+        relationships:
+        - description: Calls Service for Validation/Load/Save Groups
+          sourceId: 113
+          destinationId: 136
+          technology: java
+          id: 138
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 113
+        tags: Element,Component,Group Controllers,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java/sql
+        size: 0
+        code: []
+        name: Customer Manager
+        description: Manages customers in DB
+        url: https://github.com/trilogy-group/versata-m1-alertfind/blob/master/java/com/m1/cmc/mgmt/CustomerManager.java
+        relationships:
+        - description: Load/Save customers in database
+          sourceId: 202
+          destinationId: 18
+          id: 215
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 202
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: User Controllers
+        description: Controllers to manage User, Devices, Profiles, Team assigned to a user
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/controllers/users
+        relationships:
+        - description: Uses to load/save User/device/profile
+          sourceId: 112
+          destinationId: 127
+          technology: Java
+          id: 134
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 112
+        tags: Element,Component,User Management,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Java
+        size: 0
+        code: []
+        name: Period Audit/Log/Temp Dir cleanup
+        description: Periodic cleanup actions
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/commandline
+        relationships:
+        - description: Uses
+          sourceId: 229
+          destinationId: 18
+          id: 257
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Uses
+          sourceId: 229
+          destinationId: 12
+          id: 258
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 229
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: java/Spring
+        size: 0
+        code: []
+        name: Customer Service
+        description: Handles Customer API Calls
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/java/com/m1/cmc/service
+        relationships:
+        - description: Uses manager to Load/Save Customer
+          sourceId: 201
+          destinationId: 202
+          id: 210
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 201
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/JSON/SOAP
+        size: 0
+        code: []
+        name: Authentication Controller
+        description: Authentication, Authorisation, Token Generation, Password Rest, 2 FA controllers
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/security/controller
+        relationships:
+        - description: EMS user Login and Pull Roster file
+          sourceId: 29
+          destinationId: 7
+          technology: https/json
+          id: 66
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Call Auth authenticateUser API
+          sourceId: 29
+          destinationId: 117
+          technology: Java
+          id: 121
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 29
+        tags: Element,Component,Authentication,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/java/REST
+        size: 0
+        code: []
+        name: Customer Controller
+        description: Routes Customer requests to handlers
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/controllers/customers
+        relationships:
+        - description: Validate/Load/Save Customer
+          sourceId: 200
+          destinationId: 201
+          technology: Java
+          id: 209
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        - description: Save Roster file, config file
+          sourceId: 200
+          destinationId: 12
+          id: 275
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 200
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      - technology: Spring/JSON/REST
+        size: 0
+        code: []
+        name: Template Controller
+        description: Notification template handler
+        url: https://github.com/trilogy-group/versata-m1-alertfind/tree/master/easier/server/src/main/java/com/m1/af/api/controllers/templates
+        relationships:
+        - description: Calls Service for Validation/Load/Save Templates
+          sourceId: 183
+          destinationId: 184
+          id: 191
+          tags: Relationship,Synchronous
+          properties: {}
+          perspectives: []
+        id: 183
+        tags: Element,Component,SE7:MOAFCID
+        properties: {}
+        perspectives: []
+      name: AlertFind Server
+      description: AlertFind Container View
+      relationships:
+      - description: Send Voice and pager notification
+        sourceId: 11
+        destinationId: 10
+        technology: https/XML
+        id: 23
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send SMS notification
+        sourceId: 11
+        destinationId: 36
+        technology: https/SOAP
+        id: 294
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Receive SMS response from
+        sourceId: 11
+        destinationId: 16
+        id: 47
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send Email Notification
+        sourceId: 11
+        destinationId: 22
+        technology: SMPP
+        id: 78
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Read configurations and roster file, generate reports
+        sourceId: 11
+        destinationId: 12
+        id: 40
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send Mobile app Notification to
+        sourceId: 11
+        destinationId: 31
+        technology: https/json
+        id: 83
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send FAX notification
+        sourceId: 11
+        destinationId: 6
+        technology: http
+        id: 64
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: EMS user Login and Pull Roster file
+        sourceId: 11
+        destinationId: 7
+        technology: https/json
+        id: 67
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Send Mobile app Notification to
+        sourceId: 11
+        destinationId: 17
+        id: 56
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 11
+        destinationId: 18
+        technology: JDBC
+        id: 87
+        tags: Relationship,Synchronous
+        properties: {}
+        perspectives: []
+      id: 11
+      tags: Element,Container,AlertFind Container,FA:MOAFCID-37507,MOAFCID-36842,SE7:MOAFCID-34905,SE7:MOAFCID
+      properties: {}
+      perspectives: []
+    name: AlertFind System
+    description: AlertFind Emergency Notification System
+    relationships:
+    - description: Send Voice and pager notification
+      sourceId: 4
+      destinationId: 10
+      technology: https/XML
+      id: 24
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: EMS user Login and Pull Roster file
+      sourceId: 4
+      destinationId: 7
+      technology: https/json
+      id: 68
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Send Email and Mobile app Notifications
+      sourceId: 4
+      destinationId: 2
+      id: 101
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Send SMS notification and receive confirmation
+      sourceId: 4
+      destinationId: 9
+      technology: SMPP
+      id: 71
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    - description: Send FAX notification
+      sourceId: 4
+      destinationId: 6
+      technology: http
+      id: 65
+      tags: Relationship,Synchronous
+      properties: {}
+      perspectives: []
+    id: 4
+    tags: Element,Software System,AlertFind System
+    properties: {}
+    perspectives: []
+  deploymentNodes:
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 18
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 452
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: London AlertFind Database
+    relationships: []
+    id: 449
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 13
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 426
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: iOS Mobile App
+    relationships:
+    - description: ''
+      sourceId: 424
+      destinationId: 424
+      id: 425
+      tags: Relationship
+      properties: {}
+      perspectives: []
+    id: 424
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 11
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships:
+      - description: Send Email Notification
+        sourceId: 442
+        destinationId: 455
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 457
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Email Notification
+        sourceId: 442
+        destinationId: 414
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 445
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 442
+        destinationId: 479
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 481
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read configurations and roster file, generate reports
+        sourceId: 442
+        destinationId: 438
+        linkedRelationshipId: 40
+        id: 446
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 442
+        destinationId: 422
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 444
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Receive SMS response from
+        sourceId: 442
+        destinationId: 391
+        linkedRelationshipId: 47
+        id: 448
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Mobile app Notification to
+        sourceId: 442
+        destinationId: 382
+        linkedRelationshipId: 56
+        id: 443
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 442
+        destinationId: 452
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 454
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Email Notification
+        sourceId: 442
+        destinationId: 469
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 471
+        tags: ''
+        properties: {}
+        perspectives: []
+      id: 442
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: London App Server
+    relationships: []
+    id: 440
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 3
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 11
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships:
+      - description: Send Email Notification
+        sourceId: 459
+        destinationId: 455
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 467
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read configurations and roster file, generate reports
+        sourceId: 459
+        destinationId: 438
+        linkedRelationshipId: 40
+        id: 463
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Mobile app Notification to
+        sourceId: 459
+        destinationId: 382
+        linkedRelationshipId: 56
+        id: 460
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 459
+        destinationId: 422
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 461
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Email Notification
+        sourceId: 459
+        destinationId: 414
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 462
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Email Notification
+        sourceId: 459
+        destinationId: 469
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 472
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 459
+        destinationId: 479
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 482
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 459
+        destinationId: 452
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 466
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Receive SMS response from
+        sourceId: 459
+        destinationId: 391
+        linkedRelationshipId: 47
+        id: 465
+        tags: ''
+        properties: {}
+        perspectives: []
+      id: 459
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Plano App Server
+    relationships: []
+    id: 458
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 18
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 479
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Plano AlertFind Database
+    relationships: []
+    id: 473
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 14
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 430
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Andriod Mobile App
+    relationships:
+    - description: ''
+      sourceId: 428
+      destinationId: 428
+      id: 429
+      tags: Relationship
+      properties: {}
+      perspectives: []
+    id: 428
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 15
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 432
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Elastic Cache
+    relationships:
+    - description: ''
+      sourceId: 409
+      destinationId: 409
+      id: 416
+      tags: Relationship
+      properties: {}
+      perspectives: []
+    id: 409
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 20
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 412
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Provato Database
+    relationships:
+    - description: ''
+      sourceId: 410
+      destinationId: 410
+      id: 411
+      tags: Relationship
+      properties: {}
+      perspectives: []
+    id: 410
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 18
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 422
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Chicago Alertfind Database
+    relationships: []
+    id: 420
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - technology: Java, docker, tomcat, nginx, eks
+    instances: 3
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 11
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships:
+      - description: Send Email Notification
+        sourceId: 395
+        destinationId: 414
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 415
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 395
+        destinationId: 422
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 423
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Receive SMS response from
+        sourceId: 395
+        destinationId: 391
+        linkedRelationshipId: 47
+        id: 398
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 395
+        destinationId: 452
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 453
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Email Notification
+        sourceId: 395
+        destinationId: 455
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 456
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write records
+        sourceId: 395
+        destinationId: 479
+        technology: JDBC
+        linkedRelationshipId: 87
+        id: 480
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read configurations and roster file, generate reports
+        sourceId: 395
+        destinationId: 438
+        linkedRelationshipId: 40
+        id: 439
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Mobile app Notification to
+        sourceId: 395
+        destinationId: 382
+        linkedRelationshipId: 56
+        id: 397
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Email Notification
+        sourceId: 395
+        destinationId: 469
+        technology: SMPP
+        linkedRelationshipId: 78
+        id: 470
+        tags: ''
+        properties: {}
+        perspectives: []
+      id: 395
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Chicago App Server
+    description: Chicago AlertFind App Server
+    relationships: []
+    id: 359
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 19
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 407
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: MSDC Database
+    relationships:
+    - description: ''
+      sourceId: 405
+      destinationId: 405
+      id: 406
+      tags: Relationship
+      properties: {}
+      perspectives: []
+    id: 405
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 5
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 16
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships:
+      - description: Read / Write Records
+        sourceId: 391
+        destinationId: 412
+        technology: JDBC
+        linkedRelationshipId: 103
+        id: 413
+        tags: ''
+        properties: {}
+        perspectives: []
+      id: 391
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Provato
+    relationships: []
+    id: 381
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 356
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships:
+      - description: ''
+        sourceId: 404
+        destinationId: 459
+        linkedRelationshipId: 418
+        id: 464
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: ''
+        sourceId: 404
+        destinationId: 395
+        linkedRelationshipId: 418
+        id: 419
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: ''
+        sourceId: 404
+        destinationId: 442
+        linkedRelationshipId: 418
+        id: 447
+        tags: ''
+        properties: {}
+        perspectives: []
+      id: 404
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: FTP Server
+    relationships: []
+    id: 403
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 12
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 438
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: File Storage
+    relationships: []
+    id: 437
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 2
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 22
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 469
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Plano MTA
+    relationships: []
+    id: 468
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 1
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 22
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 455
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: London MTA
+    relationships: []
+    id: 441
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - technology: postfix, docker, Docker Linux
+    instances: 2
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 22
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships: []
+      id: 414
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: Chicago MTA
+    description: Mail Transfer Agent
+    relationships: []
+    id: 360
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+  - instances: 3
+    children: []
+    infrastructureNodes: []
+    containerInstances:
+    - containerId: 17
+      instanceId: 1
+      healthChecks: []
+      environment: AlertFind
+      relationships:
+      - description: Read / Write Records
+        sourceId: 382
+        destinationId: 407
+        technology: JDBC
+        linkedRelationshipId: 105
+        id: 408
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Notification and Receive Login, Registration, Location, notification confirmation
+        sourceId: 382
+        destinationId: 426
+        linkedRelationshipId: 60
+        id: 427
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Send Notification and Receive Login, Registration, Location, notification confirmation
+        sourceId: 382
+        destinationId: 430
+        linkedRelationshipId: 58
+        id: 431
+        tags: ''
+        properties: {}
+        perspectives: []
+      - description: Read / Write Transaction details
+        sourceId: 382
+        destinationId: 432
+        linkedRelationshipId: 279
+        id: 433
+        tags: ''
+        properties: {}
+        perspectives: []
+      id: 382
+      tags: Container Instance
+      properties: {}
+      perspectives: []
+    environment: AlertFind
+    name: MSDC
+    relationships: []
+    id: 379
+    tags: Element,Deployment Node
+    properties: {}
+    perspectives: []
+views:
+  systemLandscapeViews: []
+  systemContextViews:
+  - enterpriseBoundaryVisible: true
+    animations:
+    - order: 1
+      elements:
+      - 4
+      relationships: []
+    - order: 2
+      elements:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 109
+      - 10
+      relationships:
+      - 99
+      - 24
+      - 68
+      - 110
+      - 101
+      - 81
+      - 71
+      - 72
+      - 95
+      - 85
+      - 96
+      - 97
+      - 65
+    key: AlertFindSystem
+    softwareSystemId: 4
+    description: AlertFind System
+    paperSize: A4_Landscape
+    elements:
+    - properties: {}
+      id: 1
+      x: 190
+      y: 335
+    - properties: {}
+      id: 2
+      x: 2940
+      y: 905
+    - properties: {}
+      id: 3
+      x: 1065
+      y: 265
+    - properties: {}
+      id: 4
+      x: 1225
+      y: 1015
+    - properties: {}
+      id: 5
+      x: 145
+      y: 1170
+    - properties: {}
+      id: 6
+      x: 2150
+      y: 1420
+    - properties: {}
+      id: 7
+      x: 1495
+      y: 1725
+    - properties: {}
+      id: 8
+      x: 730
+      y: 1725
+    - properties: {}
+      id: 9
+      x: 2140
+      y: 715
+    - properties: {}
+      id: 10
+      x: 2130
+      y: 270
+    relationships:
+    - properties: {}
+      id: 72
+    - properties: {}
+      id: 71
+    - properties: {}
+      id: 81
+    - properties: {}
+      id: 97
+    - properties: {}
+      id: 65
+    - properties: {}
+      id: 95
+    - properties: {}
+      id: 85
+    - properties: {}
+      id: 96
+    - properties: {}
+      id: 24
+    - properties: {}
+      id: 99
+    - properties: {}
+      id: 68
+    - properties: {}
+      id: 101
+      vertices:
+      - x: 2260
+        y: 1170
+  containerViews:
+  - externalSoftwareSystemBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 11
+      - 22
+      - 12
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+      - 19
+      - 1
+      - 2
+      - 3
+      - 5
+      - 6
+      - 7
+      - 8
+      - 9
+      - 20
+      - 10
+      - 21
+      relationships:
+      - 23
+      - 67
+      - 47
+      - 279
+      - 70
+      - 72
+      - 94
+      - 52
+      - 96
+      - 97
+      - 56
+      - 78
+      - 58
+      - 102
+      - 103
+      - 301
+      - 105
+      - 106
+      - 80
+      - 107
+      - 108
+      - 60
+      - 40
+      - 84
+      - 64
+      - 87
+    - order: 2
+      elements:
+      - 356
+      relationships:
+      - 357
+      - 358
+    key: AlertFindContainer
+    softwareSystemId: 4
+    description: AlertFind Container Diagram
+    paperSize: A3_Landscape
+    elements:
+    - properties: {}
+      id: 11
+      x: 2185
+      y: 1350
+    - properties: {}
+      id: 22
+      x: 3130
+      y: 500
+    - properties: {}
+      id: 12
+      x: 400
+      y: 1870
+    - properties: {}
+      id: 13
+      x: 1965
+      y: 2580
+    - properties: {}
+      id: 14
+      x: 585
+      y: 2770
+    - properties: {}
+      id: 15
+      x: 2410
+      y: 2475
+    - properties: {}
+      id: 16
+      x: 2745
+      y: 1885
+    - properties: {}
+      id: 17
+      x: 1370
+      y: 1935
+    - properties: {}
+      id: 18
+      x: 255
+      y: 1470
+    - properties: {}
+      id: 19
+      x: 1255
+      y: 2655
+    - properties: {}
+      id: 1
+      x: 330
+      y: -10
+    - properties: {}
+      id: 2
+      x: 4420
+      y: 1450
+    - properties: {}
+      id: 3
+      x: 1335
+      y: 910
+    - properties: {}
+      id: 356
+      x: 680
+      y: 615
+    - properties: {}
+      id: 5
+      x: 1535
+      y: 100
+    - properties: {}
+      id: 6
+      x: 3655
+      y: 1905
+    - properties: {}
+      id: 7
+      x: 2270
+      y: 115
+    - properties: {}
+      id: 8
+      x: 2945
+      y: 110
+    - properties: {}
+      id: 9
+      x: 3655
+      y: 2420
+    - properties: {}
+      id: 20
+      x: 3068
+      y: 2480
+    - properties: {}
+      id: 10
+      x: 3650
+      y: 1400
+    - properties: {}
+      id: 21
+      x: 265
+      y: 1095
+    relationships:
+    - properties: {}
+      id: 70
+    - properties: {}
+      id: 94
+    - properties: {}
+      id: 72
+    - properties: {}
+      id: 97
+    - properties: {}
+      id: 52
+    - properties: {}
+      id: 96
+    - properties: {}
+      id: 279
+    - properties: {}
+      id: 301
+    - properties: {}
+      id: 23
+    - properties: {}
+      id: 67
+    - properties: {}
+      id: 47
+    - properties: {}
+      id: 80
+    - properties: {}
+      id: 60
+    - properties: {}
+      id: 40
+      vertices:
+      - x: 1600
+        y: 1760
+    - properties: {}
+      id: 87
+    - properties: {}
+      id: 84
+    - properties: {}
+      id: 64
+    - properties: {}
+      id: 418
+    - properties: {}
+      id: 108
+      vertices:
+      - x: 4560
+        y: 3225
+    - properties: {}
+      id: 107
+      vertices:
+      - x: 4265
+        y: 2890
+    - properties: {}
+      id: 358
+    - properties: {}
+      id: 357
+    - properties: {}
+      id: 78
+    - properties: {}
+      id: 56
+    - properties: {}
+      id: 102
+    - properties: {}
+      id: 58
+    - properties: {}
+      id: 103
+    - properties: {}
+      id: 106
+    - properties: {}
+      id: 105
+  componentViews:
+  - containerId: 17
+    externalContainerBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 33
+      - 2
+      - 13
+      - 14
+      - 15
+      - 19
+      - 31
+      - 32
+      relationships:
+      - 107
+      - 92
+      - 108
+      - 73
+      - 74
+      - 75
+    - order: 2
+      elements:
+      - 1
+      relationships: []
+    - order: 3
+      elements:
+      - 11
+      relationships:
+      - 83
+      - 151
+    key: MSDCComponent
+    softwareSystemId: 4
+    description: MSDC Component View
+    paperSize: A4_Landscape
+    elements:
+    - properties: {}
+      id: 11
+      x: 30
+      y: 1360
+    - properties: {}
+      id: 33
+      x: 830
+      y: 1420
+    - properties: {}
+      id: 1
+      x: 65
+      y: 350
+    - properties: {}
+      id: 2
+      x: 2945
+      y: 1600
+    - properties: {}
+      id: 13
+      x: 3030
+      y: 150
+    - properties: {}
+      id: 14
+      x: 2635
+      y: 760
+    - properties: {}
+      id: 15
+      x: 1875
+      y: 1460
+    - properties: {}
+      id: 19
+      x: 840
+      y: 195
+    - properties: {}
+      id: 31
+      x: 845
+      y: 755
+    - properties: {}
+      id: 32
+      x: 1900
+      y: 180
+    relationships:
+    - properties: {}
+      id: 83
+    - properties: {}
+      id: 74
+    - properties: {}
+      id: 73
+    - properties: {}
+      id: 75
+    - properties: {}
+      id: 277
+    - properties: {}
+      id: 278
+    - properties: {}
+      id: 276
+    - properties: {}
+      id: 108
+    - properties: {}
+      id: 280
+    - properties: {}
+      id: 107
+    - properties: {}
+      id: 281
+    - properties: {}
+      id: 301
+    - properties: {}
+      id: 284
+    - properties: {}
+      id: 283
+  - containerId: 11
+    externalContainerBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 12
+      - 16
+      - 17
+      - 18
+      - 160
+      - 240
+      - 196
+      - 221
+      - 222
+      - 223
+      - 202
+      - 224
+      - 147
+      - 137
+      - 225
+      - 226
+      - 227
+      - 128
+      - 229
+      - 218
+      - 219
+      - 10
+      relationships:
+      - 153
+      - 230
+      - 252
+      - 231
+      - 232
+      - 233
+      - 257
+      - 258
+      - 215
+      - 259
+      - 216
+      - 260
+      - 140
+      - 261
+      - 262
+      - 164
+      - 241
+      - 242
+      - 243
+      - 244
+      - 245
+      - 246
+      - 247
+      - 248
+      - 249
+      - 129
+    - order: 2
+      elements:
+      - 22
+      relationships:
+      - 253
+      - 250
+    - order: 3
+      elements:
+      - 254
+      relationships:
+      - 255
+      - 256
+    - order: 4
+      elements:
+      - 6
+      relationships:
+      - 251
+    key: SchedulerView
+    softwareSystemId: 4
+    description: AlertFind Scheduler Service View
+    paperSize: A2_Landscape
+    elements:
+    - properties: {}
+      id: 22
+      x: 3140
+      y: 4085
+    - properties: {}
+      id: 196
+      x: 4950
+      y: 3470
+    - properties: {}
+      id: 254
+      x: 1816
+      y: 3165
+    - properties: {}
+      id: 137
+      x: 4800
+      y: 2195
+    - properties: {}
+      id: 218
+      x: 4045
+      y: 1870
+    - properties: {}
+      id: 219
+      x: 4000
+      y: 1110
+    - properties: {}
+      id: 10
+      x: 320
+      y: 4080
+    - properties: {}
+      id: 12
+      x: 4530
+      y: 4090
+    - properties: {}
+      id: 16
+      x: 1775
+      y: 4095
+    - properties: {}
+      id: 17
+      x: 2395
+      y: 4095
+    - properties: {}
+      id: 18
+      x: 6150
+      y: 1980
+    - properties: {}
+      id: 160
+      x: 4815
+      y: 765
+    - properties: {}
+      id: 240
+      x: 1070
+      y: 1165
+    - properties: {}
+      id: 221
+      x: 3115
+      y: 3150
+    - properties: {}
+      id: 222
+      x: 1239
+      y: 3165
+    - properties: {}
+      id: 223
+      x: 685
+      y: 3170
+    - properties: {}
+      id: 202
+      x: 4850
+      y: 1365
+    - properties: {}
+      id: 224
+      x: 120
+      y: 3175
+    - properties: {}
+      id: 147
+      x: 4845
+      y: 290
+    - properties: {}
+      id: 225
+      x: 2393
+      y: 3165
+    - properties: {}
+      id: 6
+      x: 1175
+      y: 4095
+    - properties: {}
+      id: 226
+      x: 4010
+      y: 3510
+    - properties: {}
+      id: 227
+      x: 4190
+      y: 2765
+    - properties: {}
+      id: 128
+      x: 4850
+      y: 1710
+    - properties: {}
+      id: 229
+      x: 4560
+      y: 3120
+    relationships:
+    - properties: {}
+      id: 216
+    - properties: {}
+      id: 215
+    - properties: {}
+      id: 153
+    - properties: {}
+      id: 231
+    - properties: {}
+      id: 232
+    - properties: {}
+      id: 253
+    - properties: {}
+      id: 233
+    - properties: {}
+      id: 256
+    - properties: {}
+      id: 255
+    - properties: {}
+      id: 258
+    - properties: {}
+      id: 257
+    - properties: {}
+      id: 259
+    - properties: {}
+      id: 250
+    - properties: {}
+      id: 252
+    - properties: {}
+      id: 230
+    - properties: {}
+      id: 251
+    - properties: {}
+      id: 164
+    - properties: {}
+      id: 140
+    - properties: {}
+      id: 242
+    - properties: {}
+      id: 243
+    - properties: {}
+      id: 244
+    - properties: {}
+      id: 245
+    - properties: {}
+      id: 247
+    - properties: {}
+      id: 246
+    - properties: {}
+      id: 249
+    - properties: {}
+      id: 248
+    - properties: {}
+      id: 129
+    - properties: {}
+      id: 261
+    - properties: {}
+      id: 260
+    - properties: {}
+      id: 263
+    - properties: {}
+      id: 241
+    - properties: {}
+      id: 262
+  - containerId: 21
+    externalContainerBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 310
+      - 311
+      - 312
+      - 313
+      - 314
+      - 315
+      - 316
+      - 317
+      - 318
+      - 319
+      - 11
+      - 320
+      - 321
+      - 322
+      - 323
+      - 302
+      - 324
+      - 303
+      - 325
+      - 304
+      - 305
+      - 306
+      - 307
+      - 308
+      - 309
+      relationships:
+      - 330
+      - 331
+      - 332
+      - 333
+      - 334
+      - 335
+      - 336
+      - 337
+      - 338
+      - 339
+      - 340
+      - 341
+      - 342
+      - 343
+      - 344
+      - 345
+      - 346
+      - 347
+      - 326
+      - 348
+      - 327
+      - 349
+      - 328
+      - 329
+    key: UIComponent
+    softwareSystemId: 4
+    description: AlertFind UI Components
+    paperSize: A3_Portrait
+    elements:
+    - properties: {}
+      id: 310
+      x: 695
+      y: 1635
+    - properties: {}
+      id: 311
+      x: 695
+      y: 3635
+    - properties: {}
+      id: 312
+      x: 695
+      y: 2435
+    - properties: {}
+      id: 313
+      x: 695
+      y: 35
+    - properties: {}
+      id: 314
+      x: 1690
+      y: 440
+    - properties: {}
+      id: 315
+      x: 1690
+      y: 840
+    - properties: {}
+      id: 316
+      x: 1690
+      y: 1240
+    - properties: {}
+      id: 317
+      x: 1690
+      y: 1640
+    - properties: {}
+      id: 318
+      x: 1690
+      y: 2040
+    - properties: {}
+      id: 319
+      x: 1690
+      y: 40
+    - properties: {}
+      id: 11
+      x: 2800
+      y: 2305
+    - properties: {}
+      id: 320
+      x: 1690
+      y: 2440
+    - properties: {}
+      id: 321
+      x: 1690
+      y: 2840
+    - properties: {}
+      id: 322
+      x: 1690
+      y: 3240
+    - properties: {}
+      id: 323
+      x: 1690
+      y: 3640
+    - properties: {}
+      id: 302
+      x: 695
+      y: 435
+    - properties: {}
+      id: 324
+      x: 1690
+      y: 4040
+    - properties: {}
+      id: 303
+      x: 695
+      y: 835
+    - properties: {}
+      id: 325
+      x: 1690
+      y: 4440
+    - properties: {}
+      id: 304
+      x: 695
+      y: 1235
+    - properties: {}
+      id: 305
+      x: 695
+      y: 2035
+    - properties: {}
+      id: 306
+      x: 695
+      y: 3235
+    - properties: {}
+      id: 307
+      x: 695
+      y: 4435
+    - properties: {}
+      id: 308
+      x: 695
+      y: 4035
+    - properties: {}
+      id: 309
+      x: 695
+      y: 2835
+    relationships:
+    - properties: {}
+      id: 340
+      vertices:
+      - x: 2235
+        y: 1020
+      - x: 2335
+        y: 1020
+    - properties: {}
+      id: 348
+      vertices:
+      - x: 2235
+        y: 4220
+      - x: 2335
+        y: 4220
+    - properties: {}
+      id: 326
+      vertices:
+      - x: 1590
+        y: 590
+    - properties: {}
+      id: 347
+      vertices:
+      - x: 2235
+        y: 3820
+      - x: 2335
+        y: 3820
+    - properties: {}
+      id: 346
+      vertices:
+      - x: 2235
+        y: 3420
+      - x: 2335
+        y: 3420
+    - properties: {}
+      id: 345
+      vertices:
+      - x: 2235
+        y: 3020
+      - x: 2335
+        y: 3020
+    - properties: {}
+      id: 344
+      vertices:
+      - x: 2235
+        y: 2620
+      - x: 2335
+        y: 2620
+    - properties: {}
+      id: 343
+      vertices:
+      - x: 2235
+        y: 2220
+      - x: 2335
+        y: 2220
+    - properties: {}
+      id: 342
+      vertices:
+      - x: 2235
+        y: 1820
+      - x: 2335
+        y: 1820
+    - properties: {}
+      id: 341
+      vertices:
+      - x: 2235
+        y: 1420
+      - x: 2335
+        y: 1420
+    - properties: {}
+      id: 329
+      vertices:
+      - x: 1590
+        y: 1390
+    - properties: {}
+      id: 328
+      vertices:
+      - x: 1590
+        y: 990
+    - properties: {}
+      id: 349
+      vertices:
+      - x: 2235
+        y: 4620
+      - x: 2335
+        y: 4620
+    - properties: {}
+      id: 351
+      vertices:
+      - x: 1590
+        y: 190
+    - properties: {}
+      id: 350
+      vertices:
+      - x: 1590
+        y: 2590
+    - properties: {}
+      id: 336
+      vertices:
+      - x: 1590
+        y: 4190
+    - properties: {}
+      id: 337
+      vertices:
+      - x: 1590
+        y: 4590
+    - properties: {}
+      id: 334
+      vertices:
+      - x: 1590
+        y: 3390
+    - properties: {}
+      id: 335
+      vertices:
+      - x: 1590
+        y: 3790
+    - properties: {}
+      id: 333
+      vertices:
+      - x: 1590
+        y: 2990
+    - properties: {}
+      id: 330
+      vertices:
+      - x: 1590
+        y: 1790
+    - properties: {}
+      id: 331
+      vertices:
+      - x: 1590
+        y: 2190
+    - properties: {}
+      id: 338
+      vertices:
+      - x: 2235
+        y: 220
+      - x: 2335
+        y: 220
+    - properties: {}
+      id: 339
+      vertices:
+      - x: 2235
+        y: 620
+      - x: 2335
+        y: 620
+  - containerId: 22
+    externalContainerBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 11
+      - 1
+      - 34
+      - 2
+      - 35
+      relationships:
+      - 298
+      - 299
+      - 300
+      - 151
+    key: MTAComponent
+    softwareSystemId: 4
+    description: Mail Transfer Agent Component View
+    paperSize: A5_Landscape
+    elements:
+    - properties: {}
+      id: 11
+      x: 105
+      y: 855
+    - properties: {}
+      id: 1
+      x: 125
+      y: 40
+    - properties: {}
+      id: 34
+      x: 1205
+      y: 125
+    - properties: {}
+      id: 2
+      x: 1935
+      y: 740
+    - properties: {}
+      id: 35
+      x: 895
+      y: 850
+    relationships:
+    - properties: {}
+      id: 301
+    - properties: {}
+      id: 300
+    - properties: {}
+      id: 299
+    - properties: {}
+      id: 298
+  - containerId: 16
+    externalContainerBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 11
+      - 1
+      - 2
+      - 36
+      - 37
+      - 38
+      - 20
+      relationships:
+      - 286
+      - 287
+      - 46
+      - 151
+    - order: 2
+      elements:
+      - 9
+      relationships:
+      - 69
+      - 72
+    key: ProvatoComponent
+    softwareSystemId: 4
+    description: Provato Component View
+    paperSize: A4_Landscape
+    elements:
+    - properties: {}
+      id: 11
+      x: 280
+      y: 1325
+    - properties: {}
+      id: 1
+      x: 305
+      y: 505
+    - properties: {}
+      id: 2
+      x: 3040
+      y: 1245
+    - properties: {}
+      id: 36
+      x: 1275
+      y: 1470
+    - properties: {}
+      id: 37
+      x: 2130
+      y: 645
+    - properties: {}
+      id: 38
+      x: 1190
+      y: 625
+    - properties: {}
+      id: 9
+      x: 2985
+      y: 655
+    - properties: {}
+      id: 20
+      x: 2170
+      y: 1450
+    relationships:
+    - properties: {}
+      id: 301
+    - properties: {}
+      id: 72
+    - properties: {}
+      id: 296
+    - properties: {}
+      id: 294
+    - properties: {}
+      id: 293
+    - properties: {}
+      id: 288
+    - properties: {}
+      id: 69
+    - properties: {}
+      id: 297
+  - containerId: 11
+    externalContainerBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 115
+      - 116
+      - 17
+      - 7
+      - 117
+      - 18
+      - 29
+      - 30
+      - 21
+      relationships:
+      - 66
+      - 121
+      - 122
+      - 123
+      - 118
+      - 119
+      - 51
+      - 120
+    key: Authentication
+    softwareSystemId: 4
+    description: Authentication Component
+    paperSize: A4_Landscape
+    elements:
+    - properties: {}
+      id: 115
+      x: 2195
+      y: 1820
+    - properties: {}
+      id: 17
+      x: 410
+      y: 1635
+    - properties: {}
+      id: 116
+      x: 2210
+      y: 1180
+    - properties: {}
+      id: 7
+      x: 2905
+      y: 350
+    - properties: {}
+      id: 18
+      x: 2920
+      y: 1195
+    - properties: {}
+      id: 117
+      x: 1215
+      y: 1650
+    - properties: {}
+      id: 29
+      x: 1190
+      y: 385
+    - properties: {}
+      id: 30
+      x: 1845
+      y: 705
+    - properties: {}
+      id: 21
+      x: 370
+      y: 395
+    relationships:
+    - properties: {}
+      id: 119
+    - properties: {}
+      id: 118
+    - properties: {}
+      id: 51
+    - properties: {}
+      id: 120
+    - properties: {}
+      id: 66
+    - properties: {}
+      id: 121
+    - properties: {}
+      id: 125
+    - properties: {}
+      id: 126
+  - containerId: 11
+    externalContainerBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 26
+      - 29
+      - 111
+      - 145
+      - 112
+      - 113
+      - 146
+      - 136
+      - 147
+      - 137
+      - 115
+      - 116
+      - 127
+      - 117
+      - 128
+      - 30
+      - 21
+      relationships:
+      - 130
+      - 131
+      - 132
+      - 154
+      - 133
+      - 134
+      - 156
+      - 135
+      - 157
+      - 158
+      - 138
+      - 139
+      - 119
+      - 51
+      - 161
+      - 141
+      - 120
+      - 142
+      - 121
+      - 143
+      - 144
+      - 125
+      - 148
+      - 149
+    - order: 2
+      elements:
+      - 18
+      relationships:
+      - 118
+      - 129
+      - 140
+      - 153
+    - order: 3
+      elements:
+      - 17
+      relationships:
+      - 126
+    - order: 4
+      elements:
+      - 159
+      - 160
+      relationships:
+      - 165
+      - 166
+      - 162
+      - 163
+      - 164
+    - order: 5
+      elements:
+      - 167
+      - 168
+      - 169
+      relationships:
+      - 170
+      - 171
+      - 172
+      - 173
+      - 174
+      - 175
+    - order: 6
+      elements:
+      - 176
+      - 177
+      - 178
+      relationships:
+      - 179
+      - 180
+      - 181
+      - 182
+    - order: 7
+      elements:
+      - 183
+      - 184
+      - 185
+      relationships:
+      - 188
+      - 191
+      - 192
+      - 193
+    - order: 8
+      elements:
+      - 198
+      - 199
+      - 200
+      - 201
+      - 202
+      - 194
+      - 195
+      - 196
+      - 197
+      relationships:
+      - 210
+      - 211
+      - 212
+      - 213
+      - 203
+      - 214
+      - 204
+      - 215
+      - 205
+      - 207
+      - 208
+      - 209
+    key: AlertFindComponent
+    softwareSystemId: 4
+    paperSize: A2_Landscape
+    elements:
+    - properties: {}
+      id: 26
+      x: 5315
+      y: 1125
+    - properties: {}
+      id: 29
+      x: 6265
+      y: 540
+    - properties: {}
+      id: 194
+      x: 1650
+      y: 820
+    - properties: {}
+      id: 195
+      x: 1235
+      y: 2430
+    - properties: {}
+      id: 196
+      x: 1370
+      y: 3290
+    - properties: {}
+      id: 197
+      x: 1125
+      y: 770
+    - properties: {}
+      id: 176
+      x: 2735
+      y: 740
+    - properties: {}
+      id: 198
+      x: 850
+      y: 1940
+    - properties: {}
+      id: 177
+      x: 2315
+      y: 1975
+    - properties: {}
+      id: 111
+      x: 85
+      y: 525
+    - properties: {}
+      id: 199
+      x: 995
+      y: 3680
+    - properties: {}
+      id: 178
+      x: 2490
+      y: 3280
+    - properties: {}
+      id: 112
+      x: 5670
+      y: 670
+    - properties: {}
+      id: 113
+      x: 4945
+      y: 760
+    - properties: {}
+      id: 136
+      x: 4295
+      y: 2005
+    - properties: {}
+      id: 137
+      x: 4955
+      y: 3220
+    - properties: {}
+      id: 159
+      x: 85
+      y: 2460
+    - properties: {}
+      id: 115
+      x: 3980
+      y: 3065
+    - properties: {}
+      id: 116
+      x: 6215
+      y: 3475
+    - properties: {}
+      id: 117
+      x: 6505
+      y: 2170
+    - properties: {}
+      id: 30
+      x: 4450
+      y: 905
+    - properties: {}
+      id: 17
+      x: 6535
+      y: 100
+    - properties: {}
+      id: 18
+      x: 3155
+      y: 4490
+    - properties: {}
+      id: 160
+      x: 240
+      y: 3615
+    - properties: {}
+      id: 183
+      x: 2215
+      y: 760
+    - properties: {}
+      id: 184
+      x: 1740
+      y: 2095
+    - properties: {}
+      id: 185
+      x: 1910
+      y: 3185
+    - properties: {}
+      id: 200
+      x: 595
+      y: 650
+    - properties: {}
+      id: 167
+      x: 3275
+      y: 690
+    - properties: {}
+      id: 145
+      x: 3860
+      y: 700
+    - properties: {}
+      id: 201
+      x: 365
+      y: 1700
+    - properties: {}
+      id: 168
+      x: 2650
+      y: 2370
+    - properties: {}
+      id: 146
+      x: 3485
+      y: 2085
+    - properties: {}
+      id: 202
+      x: 555
+      y: 3130
+    - properties: {}
+      id: 169
+      x: 3020
+      y: 3190
+    - properties: {}
+      id: 147
+      x: 3650
+      y: 3485
+    - properties: {}
+      id: 127
+      x: 5800
+      y: 2115
+    - properties: {}
+      id: 128
+      x: 5520
+      y: 3330
+    - properties: {}
+      id: 21
+      x: 3005
+      y: 85
+    relationships:
+    - properties: {}
+      id: 172
+    - properties: {}
+      id: 215
+    - properties: {}
+      id: 174
+    - properties: {}
+      id: 51
+    - properties: {}
+      id: 130
+    - properties: {}
+      id: 153
+    - properties: {}
+      id: 191
+    - properties: {}
+      id: 170
+    - properties: {}
+      id: 193
+    - properties: {}
+      id: 217
+    - properties: {}
+      id: 119
+    - properties: {}
+      id: 134
+    - properties: {}
+      id: 157
+    - properties: {}
+      id: 138
+    - properties: {}
+      id: 205
+    - properties: {}
+      id: 203
+    - properties: {}
+      id: 141
+    - properties: {}
+      id: 164
+    - properties: {}
+      id: 120
+    - properties: {}
+      id: 162
+    - properties: {}
+      id: 181
+    - properties: {}
+      id: 266
+    - properties: {}
+      id: 209
+    - properties: {}
+      id: 207
+    - properties: {}
+      id: 143
+    - properties: {}
+      id: 166
+    - properties: {}
+      id: 149
+    - properties: {}
+      id: 126
+    - properties: {}
+      id: 216
+    - properties: {}
+      id: 173
+    - properties: {}
+      id: 214
+    - properties: {}
+      id: 175
+    - properties: {}
+      id: 212
+    - properties: {}
+      id: 131
+    - properties: {}
+      id: 210
+    - properties: {}
+      id: 171
+    - properties: {}
+      id: 192
+    - properties: {}
+      id: 118
+    - properties: {}
+      id: 135
+    - properties: {}
+      id: 156
+    - properties: {}
+      id: 133
+    - properties: {}
+      id: 139
+    - properties: {}
+      id: 158
+    - properties: {}
+      id: 179
+    - properties: {}
+      id: 204
+    - properties: {}
+      id: 142
+    - properties: {}
+      id: 163
+    - properties: {}
+      id: 180
+    - properties: {}
+      id: 140
+    - properties: {}
+      id: 161
+    - properties: {}
+      id: 182
+    - properties: {}
+      id: 265
+    - properties: {}
+      id: 267
+    - properties: {}
+      id: 208
+    - properties: {}
+      id: 129
+    - properties: {}
+      id: 121
+    - properties: {}
+      id: 165
+    - properties: {}
+      id: 188
+    - properties: {}
+      id: 125
+    - properties: {}
+      id: 148
+  - containerId: 11
+    externalContainerBoundariesVisible: false
+    animations:
+    - order: 1
+      elements:
+      - 12
+      - 1
+      - 3
+      - 26
+      - 147
+      - 27
+      - 18
+      - 7
+      - 128
+      - 8
+      - 30
+      relationships:
+      - 264
+      - 79
+      - 266
+      - 267
+      - 268
+      - 39
+      - 91
+      - 129
+      - 153
+    - order: 2
+      elements:
+      - 21
+      relationships:
+      - 106
+      - 84
+    - order: 3
+      elements:
+      - 269
+      relationships:
+      - 270
+      - 274
+    - order: 4
+      elements:
+      - 137
+      relationships:
+      - 265
+      - 140
+    - order: 5
+      elements:
+      - 200
+      relationships:
+      - 275
+      - 205
+    - order: 6
+      elements:
+      - 356
+      relationships:
+      - 357
+      - 358
+    key: AdmtImporterView
+    softwareSystemId: 4
+    description: AlertFind ADMT Roster file importer view
+    paperSize: A3_Landscape
+    elements:
+    - properties: {}
+      id: 12
+      x: 1945
+      y: 1500
+    - properties: {}
+      id: 26
+      x: 2660
+      y: 1480
+    - properties: {}
+      id: 27
+      x: 2450
+      y: 2145
+    - properties: {}
+      id: 18
+      x: 4240
+      y: 1465
+    - properties: {}
+      id: 1
+      x: 440
+      y: 515
+    - properties: {}
+      id: 200
+      x: 2145
+      y: 765
+    - properties: {}
+      id: 3
+      x: 2230
+      y: 235
+    - properties: {}
+      id: 356
+      x: 1260
+      y: 260
+    - properties: {}
+      id: 147
+      x: 3400
+      y: 1480
+    - properties: {}
+      id: 269
+      x: 1240
+      y: 2135
+    - properties: {}
+      id: 137
+      x: 3360
+      y: 245
+    - properties: {}
+      id: 7
+      x: 425
+      y: 2155
+    - properties: {}
+      id: 128
+      x: 3405
+      y: 2135
+    - properties: {}
+      id: 8
+      x: 415
+      y: 1450
+    - properties: {}
+      id: 30
+      x: 1255
+      y: 1480
+    - properties: {}
+      id: 21
+      x: 1255
+      y: 785
+    relationships:
+    - properties: {}
+      id: 205
+    - properties: {}
+      id: 91
+    - properties: {}
+      id: 153
+    - properties: {}
+      id: 84
+    - properties: {}
+      id: 140
+    - properties: {}
+      id: 265
+    - properties: {}
+      id: 264
+    - properties: {}
+      id: 267
+    - properties: {}
+      id: 275
+    - properties: {}
+      id: 266
+    - properties: {}
+      id: 268
+    - properties: {}
+      id: 270
+    - properties: {}
+      id: 358
+    - properties: {}
+      id: 129
+    - properties: {}
+      id: 357
+    - properties: {}
+      id: 274
+    - properties: {}
+      id: 79
+    - properties: {}
+      id: 39
+    - properties: {}
+      id: 106
+  dynamicViews: []
+  deploymentViews:
+  - animations: []
+    environment: AlertFind
+    key: AlertFindDeployment
+    softwareSystemId: 4
+    paperSize: A3_Landscape
+    elements:
+    - properties: {}
+      id: 391
+      x: 4220
+      y: 875
+    - properties: {}
+      id: 395
+      x: 1690
+      y: 2845
+    - properties: {}
+      id: 473
+      x: 0
+      y: 0
+    - properties: {}
+      id: 430
+      x: 3415
+      y: 715
+    - properties: {}
+      id: 452
+      x: 305
+      y: 130
+    - properties: {}
+      id: 432
+      x: 4270
+      y: 2640
+    - properties: {}
+      id: 410
+      x: 0
+      y: 0
+    - properties: {}
+      id: 455
+      x: 1950
+      y: 2140
+    - properties: {}
+      id: 412
+      x: 4210
+      y: 80
+    - properties: {}
+      id: 379
+      x: 0
+      y: 0
+    - properties: {}
+      id: 479
+      x: 1970
+      y: 755
+    - properties: {}
+      id: 414
+      x: 3370
+      y: 60
+    - properties: {}
+      id: 359
+      x: 0
+      y: 0
+    - properties: {}
+      id: 458
+      x: 0
+      y: 0
+    - properties: {}
+      id: 459
+      x: 1945
+      y: 1500
+    - properties: {}
+      id: 437
+      x: 0
+      y: 0
+    - properties: {}
+      id: 438
+      x: 325
+      y: 1015
+    - properties: {}
+      id: 381
+      x: 0
+      y: 0
+    - properties: {}
+      id: 382
+      x: 3360
+      y: 1815
+    - properties: {}
+      id: 360
+      x: 0
+      y: 0
+    - properties: {}
+      id: 440
+      x: 0
+      y: 0
+    - properties: {}
+      id: 441
+      x: 0
+      y: 0
+    - properties: {}
+      id: 442
+      x: 1690
+      y: 2845
+    - properties: {}
+      id: 420
+      x: 0
+      y: 0
+    - properties: {}
+      id: 422
+      x: 305
+      y: 130
+    - properties: {}
+      id: 424
+      x: 0
+      y: 0
+    - properties: {}
+      id: 468
+      x: 0
+      y: 0
+    - properties: {}
+      id: 469
+      x: 1950
+      y: 2140
+    - properties: {}
+      id: 403
+      x: 0
+      y: 0
+    - properties: {}
+      id: 426
+      x: 3475
+      y: 2695
+    - properties: {}
+      id: 404
+      x: 345
+      y: 1870
+    - properties: {}
+      id: 405
+      x: 0
+      y: 0
+    - properties: {}
+      id: 449
+      x: 0
+      y: 0
+    - properties: {}
+      id: 428
+      x: 0
+      y: 0
+    - properties: {}
+      id: 407
+      x: 4270
+      y: 1785
+    - properties: {}
+      id: 409
+      x: 0
+      y: 0
+    relationships:
+    - properties: {}
+      id: 433
+    - properties: {}
+      id: 423
+    - properties: {}
+      id: 447
+    - properties: {}
+      id: 446
+    - properties: {}
+      id: 457
+    - properties: {}
+      id: 464
+    - properties: {}
+      id: 413
+    - properties: {}
+      id: 465
+    - properties: {}
+      id: 431
+    - properties: {}
+      id: 443
+    - properties: {}
+      id: 454
+    - properties: {}
+      id: 463
+    - properties: {}
+      id: 415
+    - properties: {}
+      id: 427
+    - properties: {}
+      id: 448
+    - properties: {}
+      id: 439
+    - properties: {}
+      id: 408
+    - properties: {}
+      id: 419
+    - properties: {}
+      id: 397
+    - properties: {}
+      id: 460
+    - properties: {}
+      id: 482
+    - properties: {}
+      id: 472
+    - properties: {}
+      id: 398
+  filteredViews: []
+  configuration:
+    styles:
+      relationships: []
+      elements:
+      - tag: AlertFind Container
+      - tag: Component
+        background: '#6ce6fe'
+        shape: RoundedBox
+      - tag: Container
+        background: '#4db2ff'
+      - tag: Software System
+        background: '#b0b0b0'
+      - tag: Person
+        background: '#c7a495'
+        shape: Person
+      - tag: AlertFind Database
+        background: '#9fd6a6'
+        shape: Cylinder
+      - tag: MSDC Database
+        background: '#9fd6a6'
+        shape: Cylinder
+      - tag: Provato Database
+        background: '#9fd6a6'
+        shape: Cylinder
+      - tag: AlertFind iOS mobile app
+        background: '#e4d6a2'
+        shape: MobileDevicePortrait
+      - tag: Android Mobile app
+        background: '#e4d6a2'
+        shape: MobileDevicePortrait
+      - tag: Elastic Cache
+        background: '#9fd6a6'
+        shape: Cylinder
+      - tag: File System
+        background: '#ced0d8'
+        shape: Folder
+      - tag: Support User
+        background: '#d1cf73'
+        shape: Person
+      - tag: AlertFind System
+        background: '#4db2ff'
+        shape: RoundedBox
+    branding: {}
+    terminology: {}
+    lastSavedView: AlertFindDeployment
+    viewSortOrder: Default
+documentation:
+  sections: []
+  decisions: []
+  images: []
+id: 51456
+name: AlertFind System
+description: AlertFind System
+lastModifiedDate: 2021-03-11T16:23:59.9539214Z
+lastModifiedUser: shani.natav@devfactory.com
+lastModifiedAgent: structurizr-dotnet/0.9.6
+revision: 254
+configuration:
+  users: []
